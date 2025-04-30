@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.pouya.QuizApp.Model.QuestionAnswer;
-import com.pouya.QuizApp.Model.QuestionWraper;
-import com.pouya.QuizApp.service.QuizService;
+import com.example.demo.Model.QuestionAnswer;
+import com.example.demo.Model.QuestionWraper;
+import com.example.demo.Model.QuizDto;
+import com.example.demo.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class QuizController {
     @Autowired
     QuizService quizService;
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category,@RequestParam int numQ ,@RequestParam String tittle){
-        return quizService.createQuiz(category,numQ,tittle);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
+        return quizService.createQuiz(quizDto.getCategoryName(),quizDto.getNumberOfQuestion(),quizDto.getTitle());
     }
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWraper>> getUserQuestion(@PathVariable Integer id){

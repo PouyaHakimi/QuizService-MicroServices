@@ -16,8 +16,8 @@ public class Quiz {
         return title;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public List<Integer> getQuestions() {
+        return questionIds;
     }
 
     public void setId(Integer id) {
@@ -28,14 +28,14 @@ public class Quiz {
         this.title = title;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public void setQuestions(List<Integer> questions) {
+        this.questionIds = questions;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private  String title;
-    @ManyToMany
-    private List<Question> questions;
+    @ElementCollection
+    private List<Integer> questionIds;
 }
